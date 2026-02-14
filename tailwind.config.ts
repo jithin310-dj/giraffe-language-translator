@@ -57,6 +57,12 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        lingua: {
+          green: "hsl(var(--lingua-green))",
+          blue: "hsl(var(--lingua-blue))",
+          orange: "hsl(var(--lingua-orange))",
+          cream: "hsl(var(--lingua-cream))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
