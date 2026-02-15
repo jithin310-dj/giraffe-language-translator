@@ -41,10 +41,10 @@ const History = () => {
   return (
     <div className="min-h-screen bg-background px-5 py-6">
       <div className="flex items-center gap-3 mb-6">
-        <button onClick={() => navigate('/home')} className="h-10 w-10 rounded-xl bg-muted flex items-center justify-center">
-          <ArrowLeft className="h-5 w-5" />
+        <button onClick={() => navigate('/home')} className="h-10 w-10 rounded-xl bg-muted flex items-center justify-center hover:bg-muted/80 transition-colors">
+          <ArrowLeft className="h-5 w-5 text-foreground" />
         </button>
-        <h1 className="text-xl font-bold flex-1">Saved Translations</h1>
+        <h1 className="text-xl font-bold flex-1 font-display">Saved Translations</h1>
         {history.length > 0 && (
           <Button variant="ghost" size="sm" onClick={handleClearAll} className="text-destructive text-xs">
             Clear All
@@ -59,15 +59,17 @@ const History = () => {
             value={search}
             onChange={e => setSearch(e.target.value)}
             placeholder="Search translations..."
-            className="pl-9 h-11 rounded-xl"
+            className="pl-9 h-12 rounded-xl bg-card"
           />
         </div>
       )}
 
       {filtered.length === 0 ? (
         <div className="text-center py-20 text-muted-foreground">
-          <BookmarkEmpty />
-          <p className="mt-4 font-medium">No saved translations yet</p>
+          <div className="mx-auto h-16 w-16 rounded-2xl bg-muted flex items-center justify-center">
+            <FileText className="h-8 w-8 text-muted-foreground/50" />
+          </div>
+          <p className="mt-4 font-medium font-display">No saved translations yet</p>
           <p className="text-sm mt-1">Your translations will appear here</p>
         </div>
       ) : (
@@ -75,12 +77,12 @@ const History = () => {
           {filtered.map(entry => {
             const Icon = TYPE_ICONS[entry.type];
             return (
-              <Card key={entry.id} className="border-border/50">
+              <Card key={entry.id} className="border-border/40 hover:shadow-sm transition-shadow">
                 <CardContent className="p-4">
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
-                        <Icon className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+                        <Icon className="h-3.5 w-3.5 text-primary shrink-0" />
                         <span className="text-xs text-muted-foreground">
                           {getLanguageByCode(entry.sourceLang)?.name || entry.sourceLang} → {getLanguageByCode(entry.targetLang)?.name || entry.targetLang}
                         </span>
@@ -89,7 +91,7 @@ const History = () => {
                       <p className="text-sm truncate text-foreground">{entry.originalText}</p>
                       <p className="text-sm truncate text-primary font-medium mt-0.5">{entry.translatedText}</p>
                     </div>
-                    <button onClick={() => handleDelete(entry.id)} className="p-1.5 rounded-lg hover:bg-destructive/10">
+                    <button onClick={() => handleDelete(entry.id)} className="p-1.5 rounded-lg hover:bg-destructive/10 transition-colors">
                       <Trash2 className="h-4 w-4 text-destructive/60" />
                     </button>
                   </div>
@@ -102,13 +104,5 @@ const History = () => {
     </div>
   );
 };
-
-function BookmarkEmpty() {
-  return (
-    <div className="mx-auto h-16 w-16 rounded-2xl bg-muted flex items-center justify-center">
-      <FileText className="h-8 w-8 text-muted-foreground/50" />
-    </div>
-  );
-}
 
 export default History;

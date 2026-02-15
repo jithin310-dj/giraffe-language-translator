@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { TranslationResult } from '@/components/TranslationResult';
 import { SUPPORTED_LANGUAGES } from '@/lib/languages';
-import { getPreferences, saveTranslation } from '@/lib/storage';
+import { saveTranslation } from '@/lib/storage';
 import { usePreferences } from '@/hooks/usePreferences';
 import { useOnlineStatus } from '@/hooks/useOnlineStatus';
 import { supabase } from '@/integrations/supabase/client';
@@ -69,16 +69,16 @@ const ImageTranslate = () => {
   return (
     <div className="min-h-screen bg-background px-5 py-6">
       <div className="flex items-center gap-3 mb-6">
-        <button onClick={() => navigate('/home')} className="h-10 w-10 rounded-xl bg-muted flex items-center justify-center">
-          <ArrowLeft className="h-5 w-5" />
+        <button onClick={() => navigate('/home')} className="h-10 w-10 rounded-xl bg-muted flex items-center justify-center hover:bg-muted/80 transition-colors">
+          <ArrowLeft className="h-5 w-5 text-foreground" />
         </button>
-        <h1 className="text-xl font-bold">Scan Image</h1>
+        <h1 className="text-xl font-bold font-display">Scan Image</h1>
       </div>
 
       <div className="mb-4">
         <label className="text-sm font-medium text-muted-foreground mb-1 block">Translate to</label>
         <Select value={targetLang} onValueChange={setTargetLang}>
-          <SelectTrigger className="h-11 rounded-xl"><SelectValue /></SelectTrigger>
+          <SelectTrigger className="h-12 rounded-xl bg-card"><SelectValue /></SelectTrigger>
           <SelectContent>
             {SUPPORTED_LANGUAGES.map(l => (
               <SelectItem key={l.code} value={l.code}>{l.name}</SelectItem>
@@ -90,14 +90,14 @@ const ImageTranslate = () => {
       <input ref={fileInputRef} type="file" accept="image/*" capture="environment" className="hidden" onChange={handleImageSelect} />
 
       {imagePreview ? (
-        <div className="mb-4 rounded-xl overflow-hidden border border-border">
+        <div className="mb-4 rounded-xl overflow-hidden border border-border/50 shadow-sm">
           <img src={imagePreview} alt="Captured" className="w-full max-h-64 object-contain bg-muted" />
         </div>
       ) : (
         <div className="mb-4 grid grid-cols-2 gap-3">
           <Button
             variant="outline"
-            className="h-28 rounded-xl flex-col gap-2"
+            className="h-28 rounded-xl flex-col gap-2 border-border/40 hover:border-primary/40 hover:bg-primary/5"
             onClick={() => fileInputRef.current?.click()}
           >
             <Camera className="h-8 w-8 text-primary" />
@@ -105,7 +105,7 @@ const ImageTranslate = () => {
           </Button>
           <Button
             variant="outline"
-            className="h-28 rounded-xl flex-col gap-2"
+            className="h-28 rounded-xl flex-col gap-2 border-border/40 hover:border-accent/40 hover:bg-accent/5"
             onClick={() => {
               if (fileInputRef.current) {
                 fileInputRef.current.removeAttribute('capture');
@@ -114,7 +114,7 @@ const ImageTranslate = () => {
               }
             }}
           >
-            <ImageIcon className="h-8 w-8 text-[hsl(var(--lingua-green))]" />
+            <ImageIcon className="h-8 w-8 text-accent" />
             <span className="text-sm font-semibold">From Gallery</span>
           </Button>
         </div>
@@ -125,7 +125,7 @@ const ImageTranslate = () => {
           <Button variant="outline" className="flex-1 h-12 rounded-xl" onClick={() => { setImagePreview(null); setExtractedText(''); setTranslatedText(''); }}>
             Retake
           </Button>
-          <Button className="flex-1 h-12 rounded-xl font-bold" onClick={handleScan} disabled={isLoading}>
+          <Button className="flex-1 h-12 rounded-xl font-bold bg-accent hover:bg-accent/90 text-accent-foreground" onClick={handleScan} disabled={isLoading}>
             {isLoading ? <Loader2 className="h-5 w-5 animate-spin" /> : 'Scan & Translate'}
           </Button>
         </div>

@@ -89,24 +89,24 @@ const VoiceTranslate = () => {
   return (
     <div className="min-h-screen bg-background px-5 py-6">
       <div className="flex items-center gap-3 mb-6">
-        <button onClick={() => navigate('/home')} className="h-10 w-10 rounded-xl bg-muted flex items-center justify-center">
-          <ArrowLeft className="h-5 w-5" />
+        <button onClick={() => navigate('/home')} className="h-10 w-10 rounded-xl bg-muted flex items-center justify-center hover:bg-muted/80 transition-colors">
+          <ArrowLeft className="h-5 w-5 text-foreground" />
         </button>
-        <h1 className="text-xl font-bold">Speak & Translate</h1>
+        <h1 className="text-xl font-bold font-display">Speak & Translate</h1>
       </div>
 
       <div className="flex items-center gap-2 mb-8">
         <Select value={sourceLang} onValueChange={setSourceLang}>
-          <SelectTrigger className="flex-1 h-11 rounded-xl"><SelectValue /></SelectTrigger>
+          <SelectTrigger className="flex-1 h-12 rounded-xl bg-card"><SelectValue /></SelectTrigger>
           <SelectContent>
             {SUPPORTED_LANGUAGES.map(l => (
               <SelectItem key={l.code} value={l.code}>{l.name}</SelectItem>
             ))}
           </SelectContent>
         </Select>
-        <span className="text-muted-foreground text-sm">→</span>
+        <span className="text-muted-foreground text-sm font-bold">→</span>
         <Select value={targetLang} onValueChange={setTargetLang}>
-          <SelectTrigger className="flex-1 h-11 rounded-xl"><SelectValue /></SelectTrigger>
+          <SelectTrigger className="flex-1 h-12 rounded-xl bg-card"><SelectValue /></SelectTrigger>
           <SelectContent>
             {SUPPORTED_LANGUAGES.map(l => (
               <SelectItem key={l.code} value={l.code}>{l.name}</SelectItem>
@@ -121,13 +121,13 @@ const VoiceTranslate = () => {
           className={`h-28 w-28 rounded-full flex items-center justify-center transition-all duration-300 shadow-lg ${
             isListening
               ? 'bg-destructive animate-pulse shadow-destructive/30'
-              : 'bg-primary shadow-primary/30 active:scale-95'
+              : 'bg-accent shadow-accent/30 active:scale-95 hover:shadow-xl'
           }`}
         >
           {isListening ? (
             <MicOff className="h-10 w-10 text-destructive-foreground" />
           ) : (
-            <Mic className="h-10 w-10 text-primary-foreground" />
+            <Mic className="h-10 w-10 text-accent-foreground" />
           )}
         </button>
         <p className="mt-4 text-sm text-muted-foreground">
@@ -137,13 +137,13 @@ const VoiceTranslate = () => {
 
       {isLoading && (
         <div className="flex justify-center mb-6">
-          <Loader2 className="h-6 w-6 animate-spin text-primary" />
+          <Loader2 className="h-6 w-6 animate-spin text-accent" />
         </div>
       )}
 
       {spokenText && (
-        <div className="mb-4 p-3 rounded-xl bg-muted/50 text-sm text-muted-foreground">
-          <span className="font-semibold">You said:</span> {spokenText}
+        <div className="mb-4 p-3 rounded-xl bg-muted/50 text-sm text-muted-foreground border border-border/40">
+          <span className="font-semibold text-foreground">You said:</span> {spokenText}
         </div>
       )}
 

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,41 +6,42 @@
 
 @layer base {
   :root {
-    --background: 40 33% 98%;
-    --foreground: 220 30% 15%;
+    --background: 38 40% 97%;
+    --foreground: 220 15% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 30% 15%;
+    --card-foreground: 220 15% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 30% 15%;
+    --popover-foreground: 220 15% 20%;
 
-    --primary: 199 70% 44%;
+    --primary: 168 45% 32%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 152 40% 88%;
-    --secondary-foreground: 152 40% 20%;
+    --secondary: 42 70% 85%;
+    --secondary-foreground: 42 50% 20%;
 
-    --muted: 40 20% 94%;
+    --muted: 38 25% 92%;
     --muted-foreground: 220 10% 46%;
 
-    --accent: 35 90% 60%;
-    --accent-foreground: 35 90% 15%;
+    --accent: 200 75% 55%;
+    --accent-foreground: 200 90% 10%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 88%;
-    --input: 220 15% 88%;
-    --ring: 199 70% 44%;
+    --border: 38 20% 88%;
+    --input: 38 20% 85%;
+    --ring: 168 45% 32%;
 
     --radius: 1rem;
 
-    --lingua-green: 152 45% 55%;
-    --lingua-blue: 199 70% 44%;
-    --lingua-orange: 35 90% 60%;
-    --lingua-cream: 40 33% 98%;
-    --lingua-warm-white: 40 20% 96%;
+    --giraffe-sand: 42 60% 78%;
+    --giraffe-warm: 38 55% 92%;
+    --giraffe-teal: 168 45% 32%;
+    --giraffe-sky: 200 75% 55%;
+    --giraffe-cream: 38 40% 97%;
+    --giraffe-spot: 30 50% 45%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -53,33 +54,40 @@
   }
 
   .dark {
-    --background: 220 25% 10%;
-    --foreground: 40 20% 95%;
+    --background: 220 20% 8%;
+    --foreground: 38 20% 92%;
 
-    --card: 220 25% 14%;
-    --card-foreground: 40 20% 95%;
+    --card: 220 20% 12%;
+    --card-foreground: 38 20% 92%;
 
-    --popover: 220 25% 14%;
-    --popover-foreground: 40 20% 95%;
+    --popover: 220 20% 12%;
+    --popover-foreground: 38 20% 92%;
 
-    --primary: 199 70% 50%;
+    --primary: 168 40% 42%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 152 30% 20%;
-    --secondary-foreground: 152 40% 85%;
+    --secondary: 42 40% 18%;
+    --secondary-foreground: 42 40% 85%;
 
-    --muted: 220 20% 18%;
-    --muted-foreground: 220 10% 60%;
+    --muted: 220 15% 16%;
+    --muted-foreground: 220 10% 58%;
 
-    --accent: 35 80% 50%;
-    --accent-foreground: 35 90% 95%;
+    --accent: 200 65% 45%;
+    --accent-foreground: 200 90% 95%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 20% 22%;
-    --input: 220 20% 22%;
-    --ring: 199 70% 50%;
+    --border: 220 15% 20%;
+    --input: 220 15% 20%;
+    --ring: 168 40% 42%;
+
+    --giraffe-sand: 42 40% 30%;
+    --giraffe-warm: 38 30% 14%;
+    --giraffe-teal: 168 40% 42%;
+    --giraffe-sky: 200 65% 45%;
+    --giraffe-cream: 220 20% 8%;
+    --giraffe-spot: 30 40% 35%;
 
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -100,5 +108,21 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Nunito', sans-serif;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Fredoka', 'Nunito', sans-serif;
+  }
+}
+
+@layer utilities {
+  .giraffe-gradient {
+    background: linear-gradient(135deg, hsl(var(--giraffe-cream)) 0%, hsl(var(--giraffe-warm)) 50%, hsl(var(--secondary)) 100%);
+  }
+  .giraffe-pattern {
+    background-image: radial-gradient(ellipse 20px 25px at 30% 20%, hsl(var(--giraffe-spot) / 0.06) 0%, transparent 100%),
+                       radial-gradient(ellipse 18px 22px at 70% 40%, hsl(var(--giraffe-spot) / 0.05) 0%, transparent 100%),
+                       radial-gradient(ellipse 22px 18px at 50% 75%, hsl(var(--giraffe-spot) / 0.04) 0%, transparent 100%),
+                       radial-gradient(ellipse 15px 20px at 85% 80%, hsl(var(--giraffe-spot) / 0.05) 0%, transparent 100%);
   }
 }
