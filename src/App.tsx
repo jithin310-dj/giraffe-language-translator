@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { getPreferences } from "@/lib/storage";
 import Welcome from "./pages/Welcome";
+import Auth from "./pages/Auth";
 import LanguageSelect from "./pages/LanguageSelect";
 import Home from "./pages/Home";
 import TextTranslate from "./pages/TextTranslate";
@@ -33,6 +34,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<RootRedirect />} />
           <Route path="/welcome" element={<Welcome />} />
+          <Route path="/auth" element={<Auth />} />
           <Route path="/language-select" element={<LanguageSelect />} />
           <Route path="/home" element={<Home />} />
           <Route path="/translate/text" element={<TextTranslate />} />

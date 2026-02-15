@@ -44,12 +44,12 @@ const Welcome = () => {
             Start Translating
           </Button>
           <Button
-            onClick={() => navigate('/language-select')}
+            onClick={() => navigate('/auth')}
             variant="outline"
             size="lg"
             className="w-full h-14 text-lg font-bold rounded-2xl border-2 border-primary/20 hover:bg-primary/5"
           >
-            Login / Sign Up
+            Sign in with Google
           </Button>
         </div>
       </div>
