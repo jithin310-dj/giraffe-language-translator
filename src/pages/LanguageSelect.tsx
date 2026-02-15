@@ -23,7 +23,7 @@ const LanguageSelect = () => {
   return (
     <div className="min-h-screen bg-background px-5 py-8 flex flex-col">
       <div className="mb-8 text-center">
-        <h1 className="text-2xl font-extrabold text-foreground mb-2">Choose Your Language</h1>
+        <h1 className="text-2xl font-bold text-foreground mb-2 font-display">Choose Your Language</h1>
         <p className="text-muted-foreground text-sm">Select the language you understand best</p>
       </div>
 
@@ -34,7 +34,7 @@ const LanguageSelect = () => {
             className={`cursor-pointer transition-all duration-200 active:scale-95 ${
               selected === lang.code
                 ? 'ring-2 ring-primary border-primary bg-primary/5'
-                : 'hover:border-primary/30'
+                : 'hover:border-primary/30 hover:shadow-sm'
             }`}
             onClick={() => setSelected(lang.code)}
           >
@@ -45,7 +45,7 @@ const LanguageSelect = () => {
                 </div>
               )}
               <span className="text-2xl mb-2">{LANG_EMOJIS[lang.code]}</span>
-              <span className="font-bold text-foreground">{lang.nativeName}</span>
+              <span className="font-bold text-foreground font-display">{lang.nativeName}</span>
               <span className="text-xs text-muted-foreground">{lang.name}</span>
             </CardContent>
           </Card>
@@ -57,7 +57,7 @@ const LanguageSelect = () => {
           onClick={handleContinue}
           disabled={!selected}
           size="lg"
-          className="w-full h-14 text-lg font-bold rounded-2xl"
+          className="w-full h-14 text-lg font-bold rounded-2xl bg-accent hover:bg-accent/90 text-accent-foreground"
         >
           Continue
         </Button>

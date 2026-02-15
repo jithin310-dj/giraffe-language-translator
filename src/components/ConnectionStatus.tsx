@@ -8,7 +8,7 @@ export function ConnectionStatus() {
     <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
       {isOnline ? (
         <>
-          <Wifi className="h-3.5 w-3.5 text-[hsl(var(--lingua-green))]" />
+          <Wifi className="h-3.5 w-3.5 text-primary" />
           <span>Online</span>
         </>
       ) : (

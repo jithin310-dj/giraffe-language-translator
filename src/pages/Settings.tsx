@@ -30,21 +30,23 @@ const Settings = () => {
   return (
     <div className="min-h-screen bg-background px-5 py-6">
       <div className="flex items-center gap-3 mb-6">
-        <button onClick={() => navigate('/home')} className="h-10 w-10 rounded-xl bg-muted flex items-center justify-center">
-          <ArrowLeft className="h-5 w-5" />
+        <button onClick={() => navigate('/home')} className="h-10 w-10 rounded-xl bg-muted flex items-center justify-center hover:bg-muted/80 transition-colors">
+          <ArrowLeft className="h-5 w-5 text-foreground" />
         </button>
-        <h1 className="text-xl font-bold">Settings</h1>
+        <h1 className="text-xl font-bold font-display">Settings</h1>
       </div>
 
       <div className="space-y-4">
-        <Card className="border-border/50">
+        <Card className="border-border/40">
           <CardContent className="p-4">
             <div className="flex items-center gap-3 mb-3">
-              <Globe className="h-5 w-5 text-primary" />
+              <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                <Globe className="h-4 w-4 text-primary" />
+              </div>
               <span className="font-semibold">Preferred Language</span>
             </div>
             <Select value={prefs.preferredLanguage} onValueChange={v => updatePreferences({ preferredLanguage: v })}>
-              <SelectTrigger className="h-11 rounded-xl"><SelectValue /></SelectTrigger>
+              <SelectTrigger className="h-12 rounded-xl bg-card"><SelectValue /></SelectTrigger>
               <SelectContent>
                 {SUPPORTED_LANGUAGES.map(l => (
                   <SelectItem key={l.code} value={l.code}>{l.nativeName} ({l.name})</SelectItem>
@@ -54,14 +56,16 @@ const Settings = () => {
           </CardContent>
         </Card>
 
-        <Card className="border-border/50">
+        <Card className="border-border/40">
           <CardContent className="p-4">
             <div className="flex items-center gap-3 mb-3">
-              <Type className="h-5 w-5 text-[hsl(var(--lingua-green))]" />
+              <div className="h-8 w-8 rounded-lg bg-accent/10 flex items-center justify-center">
+                <Type className="h-4 w-4 text-accent" />
+              </div>
               <span className="font-semibold">Text Size</span>
             </div>
             <Select value={prefs.textSize} onValueChange={(v: UserPreferences['textSize']) => updatePreferences({ textSize: v })}>
-              <SelectTrigger className="h-11 rounded-xl"><SelectValue /></SelectTrigger>
+              <SelectTrigger className="h-12 rounded-xl bg-card"><SelectValue /></SelectTrigger>
               <SelectContent>
                 {TEXT_SIZES.map(s => (
                   <SelectItem key={s.value} value={s.value}>{s.label}</SelectItem>
@@ -71,27 +75,31 @@ const Settings = () => {
           </CardContent>
         </Card>
 
-        <Card className="border-border/50">
+        <Card className="border-border/40">
           <CardContent className="p-4">
             <div className="flex items-center gap-3 mb-3">
-              <Database className="h-5 w-5 text-accent" />
+              <div className="h-8 w-8 rounded-lg bg-secondary flex items-center justify-center">
+                <Database className="h-4 w-4 text-secondary-foreground" />
+              </div>
               <span className="font-semibold">Offline Data</span>
             </div>
             <p className="text-sm text-muted-foreground mb-3">Storage used: {storageSize}</p>
-            <Button variant="outline" className="w-full rounded-xl" onClick={handleClearCache}>
+            <Button variant="outline" className="w-full rounded-xl border-destructive/20 text-destructive hover:bg-destructive/5" onClick={handleClearCache}>
               Clear Saved Translations
             </Button>
           </CardContent>
         </Card>
 
-        <Card className="border-border/50">
+        <Card className="border-border/40">
           <CardContent className="p-4">
             <div className="flex items-center gap-3 mb-2">
-              <Info className="h-5 w-5 text-muted-foreground" />
+              <div className="h-8 w-8 rounded-lg bg-muted flex items-center justify-center">
+                <Info className="h-4 w-4 text-muted-foreground" />
+              </div>
               <span className="font-semibold">About</span>
             </div>
             <p className="text-sm text-muted-foreground">LinguaLite v1.0.0</p>
-            <p className="text-xs text-muted-foreground/60 mt-1">Understand anything, in your language</p>
+            <p className="text-xs text-muted-foreground/60 mt-1">Giraffe Language Translator — Understand Any Language. Anywhere.</p>
           </CardContent>
         </Card>
       </div>
