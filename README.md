@@ -2,7 +2,7 @@
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+**URL**: https://preview--giraffe-language-translator.lovable.app/welcome
 
 ## How can I edit this code?
 
